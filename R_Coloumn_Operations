@@ -1,0 +1,41 @@
+temparature = c(80,91,75,60)
+rain = c(10,90,40,30) #creating a vector
+
+#to add them to a column
+data = cbind(temparature, rain)
+
+#Transform the above columns to a row table
+t(data)
+
+#naming column and row names
+colnames(data) = c("Temp", "Rain")
+rownames(data) = c("M", "T", "W", "T")
+
+rownames(data)[4] = "Th"   #update row name 
+
+mean(data[,1]) #mean of 1st column
+
+data[3,2] = NA #update values
+
+#Since the value is update to NA we cannot perform operations so na.rm will ignore such values
+mean(data[:2], na.rm = TRUE)
+na.omit(data) #it will remove rows of such missing data points
+
+apply(data, 2, 'mean') #compute mean on columns 1 and2 represent rows and column
+apply(data, 2, 'mean', na.rm = TRUE) #if data points are missing
+
+SWIM = c("Y","N" ,"Y", "N")
+class(SWIM) #returns "character" genrally to check type
+
+as.factor(SWIM) #converts it to factor specifying differnt values as levels ex: Levels: N Y
+
+#we cannot cbind swim since it is not a vector
+new_data = data.frame(data, SWIM) #This cmd will add SWIM as a new column
+
+range(new_data[,1]) # will return range of values in given column ex: 60 91
+
+
+data("ChickWeight")
+CW = ChickWeight
+elim = which(ChickWeight > 200) #returns elements > 200
+CW_trim = CW[--elim, ] #remove all rows with in elim

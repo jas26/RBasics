@@ -1,0 +1,46 @@
+rm(list = ls())  #Remove all the previous objects
+
+#SetUp working directory
+getwd()
+setwd("~/Desktop/path")
+
+#working with packages
+
+CRAN , Bioconductor #packages we mainly use in our class
+
+#installing a package
+install.packages("MASS")
+library(MASS) #call library into the package
+ls("package:MASS") #List functions in the package
+
+?iris #get info dataset
+dim(iris) #how big the dataset is
+head(iris) #peak of the data
+
+iris(1:5, 3:5) #1st 5 rows and 3 to 5 coulums 
+iris[ , 5] #elements in 5 coulumn
+
+class(iris)
+class(iris[ ,1]) #type of variable 
+
+as.numeric(iris[ , 5])
+
+#transformations
+clean_iris <- iris
+clean_iris <- log(clean_iris[,1])
+
+
+#a look at what we eliminate
+clean_iris(c(10:20,60:63,75),)
+#eliminate some rows 
+clean_iris <- clean_iris(-c(10:20,60:63,75),)
+
+#save my Dataset
+save(iris, clean_iris, file = "my_iris.RData") #as a *.RData
+write.table(clean_iris, sep = "\t", file="clean_iris.txt", 
+row.names = FALSE, col.names = coulums(clean_iris)) #save as a txt file
+write.table(clean_iris, sep = ",", file="clean_iris.csv", 
+row.names = FALSE, col.names = coulums(clean_iris)) #save as a csv file
+
+#read in a data file
+mydata <- read.delim("clean_iris.txt", sep = "\t")
