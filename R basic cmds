@@ -5,7 +5,6 @@ getwd()
 setwd("~/Desktop/path")
 
 #working with packages
-
 CRAN , Bioconductor #packages we mainly use in our class
 
 #installing a package
